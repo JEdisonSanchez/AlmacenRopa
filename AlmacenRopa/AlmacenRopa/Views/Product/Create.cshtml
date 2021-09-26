@@ -1,0 +1,78 @@
+﻿@model AlmacenRopa.Models.PRODUCT
+
+
+<h4>Registrar nuevo producto</h4>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="input-field col s6">
+                <label>Codigo del producto</label>
+                @Html.EditorFor(model => model.CODE_PRODUCT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CODE_PRODUCT, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-field col s6">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Seleccionar Foto</span>
+                        <input type="file" name="imageload">
+                        @Html.ValidationMessageFor(model => model.PHOTO, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                @*
+                    <label>Foto del Producto</label>
+                    @Html.EditorFor(model => model.PHOTO, new { htmlAttributes = new { @class = "form-control" } })*@
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <label>Nombre del producto</label>
+                @Html.EditorFor(model => model.NAME_PRODUCT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME_PRODUCT, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-field col s6">
+                <label>Descripción del producto</label>
+                @Html.EditorFor(model => model.DESCRIPTION_PRODUCT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DESCRIPTION_PRODUCT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <label>Cantidad en Stock</label>
+                @Html.EditorFor(model => model.STOCK, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.STOCK, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-field col s6">
+                <label>Precio del Producto</label>
+                @Html.EditorFor(model => model.PRICE_PRODUCT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PRICE_PRODUCT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <label>Proveedor del Producto</label>
+                @Html.DropDownList("ID_PROVIDER", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID_PROVIDER, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-field col s6">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+                @Html.ActionLink("Volver", "Index")
+
+            </div>
+        </div>
+
+
+    </div>
+}

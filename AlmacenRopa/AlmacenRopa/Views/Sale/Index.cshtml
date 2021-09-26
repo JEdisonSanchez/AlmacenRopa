@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AlmacenRopa.Models.SALE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.USER_CLIENT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USER_SALLER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AMOUNT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE_SALE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTAL_VALUE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCT.CODE_PRODUCT)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.USER_CLIENT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USER_SALLER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AMOUNT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE_SALE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TOTAL_VALUE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCT.CODE_PRODUCT)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SALE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_SALE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SALE })
+        </td>
+    </tr>
+}
+
+</table>

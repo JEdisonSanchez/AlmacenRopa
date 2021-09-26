@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CLOTHINGSTOREModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C_PROVIDER">
+    <Key>
+      <PropertyRef Name="ID_PROVIDER" />
+    </Key>
+    <Property Name="ID_PROVIDER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDENTIFICATIONCARD" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SURNAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_PROVIDER" FromRole="C_PROVIDER" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="C_USER">
+    <Key>
+      <PropertyRef Name="IDUSER" />
+    </Key>
+    <Property Name="IDUSER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDENTIFICATIONCARD" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="TYPE_IDENTIFICATION" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="NAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SURNAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS_USER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ORIGINCITY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IDROLE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ROLE_USER" Relationship="Self.FK_ROLE_USER" FromRole="C_USER" ToRole="ROLE_USER" />
+    <Property Name="SESION_NAME" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="SESION_PASSWORD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ID_PRODUCT" />
+    </Key>
+    <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE_PRODUCT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="NAME_PRODUCT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION_PRODUCT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="STOCK" Type="Int32" />
+    <Property Name="PRICE_PRODUCT" Type="Double" />
+    <Property Name="ID_PROVIDER" Type="Int32" />
+    <NavigationProperty Name="C_PROVIDER" Relationship="Self.FK_PRODUCT_PROVIDER" FromRole="PRODUCT" ToRole="C_PROVIDER" />
+    <NavigationProperty Name="SALE" Relationship="Self.FK_SALE_PRODUCT" FromRole="PRODUCT" ToRole="SALE" />
+  </EntityType>
+  <EntityType Name="ROLE_USER">
+    <Key>
+      <PropertyRef Name="ID_ROLE" />
+    </Key>
+    <Property Name="ID_ROLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME_ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPTION_ROLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="C_USER" Relationship="Self.FK_ROLE_USER" FromRole="ROLE_USER" ToRole="C_USER" />
+  </EntityType>
+  <EntityType Name="SALE">
+    <Key>
+      <PropertyRef Name="ID_SALE" />
+    </Key>
+    <Property Name="ID_SALE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_CLIENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="USER_SALLER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AMOUNT" Type="Int32" Nullable="false" />
+    <Property Name="DATE_SALE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TOTAL_VALUE" Type="Double" Nullable="false" />
+    <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.FK_SALE_PRODUCT" FromRole="SALE" ToRole="PRODUCT" />
+  </EntityType>
+  <Association Name="FK_PRODUCT_PROVIDER">
+    <End Role="C_PROVIDER" Type="Self.C_PROVIDER" Multiplicity="0..1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_PROVIDER">
+        <PropertyRef Name="ID_PROVIDER" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="ID_PROVIDER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_USER">
+    <End Role="ROLE_USER" Type="Self.ROLE_USER" Multiplicity="1" />
+    <End Role="C_USER" Type="Self.C_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE_USER">
+        <PropertyRef Name="ID_ROLE" />
+      </Principal>
+      <Dependent Role="C_USER">
+        <PropertyRef Name="IDROLE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALE_PRODUCT">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Principal>
+      <Dependent Role="SALE">
+        <PropertyRef Name="ID_PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CLOTHINGSTOREEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C_PROVIDER" EntityType="Self.C_PROVIDER" />
+    <EntitySet Name="C_USER" EntityType="Self.C_USER" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
+    <EntitySet Name="ROLE_USER" EntityType="Self.ROLE_USER" />
+    <EntitySet Name="SALE" EntityType="Self.SALE" />
+    <AssociationSet Name="FK_PRODUCT_PROVIDER" Association="Self.FK_PRODUCT_PROVIDER">
+      <End Role="C_PROVIDER" EntitySet="C_PROVIDER" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_USER" Association="Self.FK_ROLE_USER">
+      <End Role="ROLE_USER" EntitySet="ROLE_USER" />
+      <End Role="C_USER" EntitySet="C_USER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALE_PRODUCT" Association="Self.FK_SALE_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="SALE" EntitySet="SALE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

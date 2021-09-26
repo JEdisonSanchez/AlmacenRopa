@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CLOTHINGSTOREModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="_PROVIDER">
+          <Key>
+            <PropertyRef Name="ID_PROVIDER" />
+          </Key>
+          <Property Name="ID_PROVIDER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDENTIFICATIONCARD" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="NAMES" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SURNAMES" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PHONE" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NIT" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_USER">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDENTIFICATIONCARD" Type="varchar" MaxLength="12" />
+          <Property Name="TYPE_IDENTIFICATION" Type="varchar" MaxLength="12" />
+          <Property Name="PHOTO" Type="image" Nullable="false" />
+          <Property Name="NAMES" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SURNAMES" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ADDRESS_USER" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PHONE" Type="varchar" MaxLength="12" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="30" />
+          <Property Name="ORIGINCITY" Type="varchar" MaxLength="30" />
+          <Property Name="IDROLE" Type="int" Nullable="false" />
+          <Property Name="SESION_NAME" Type="nchar" MaxLength="100" />
+          <Property Name="SESION_PASSWORD" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE_PRODUCT" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="PHOTO" Type="image" />
+          <Property Name="NAME_PRODUCT" Type="varchar" MaxLength="20" />
+          <Property Name="DESCRIPTION_PRODUCT" Type="varchar" MaxLength="100" />
+          <Property Name="STOCK" Type="int" />
+          <Property Name="PRICE_PRODUCT" Type="float" />
+          <Property Name="ID_PROVIDER" Type="int" />
+        </EntityType>
+        <EntityType Name="ROLE_USER">
+          <Key>
+            <PropertyRef Name="ID_ROLE" />
+          </Key>
+          <Property Name="ID_ROLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME_ROLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION_ROLE" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_SALE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_CLIENT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="USER_SALLER" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AMOUNT" Type="int" Nullable="false" />
+          <Property Name="DATE_SALE" Type="date" Nullable="false" />
+          <Property Name="TOTAL_VALUE" Type="float" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PRODUCT_PROVIDER">
+          <End Role="_PROVIDER" Type="Self._PROVIDER" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_PROVIDER">
+              <PropertyRef Name="ID_PROVIDER" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_PROVIDER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_USER">
+          <End Role="ROLE_USER" Type="Self.ROLE_USER" Multiplicity="1" />
+          <End Role="C_USER" Type="Self.C_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE_USER">
+              <PropertyRef Name="ID_ROLE" />
+            </Principal>
+            <Dependent Role="C_USER">
+              <PropertyRef Name="IDROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CLOTHINGSTOREModelStoreContainer">
+          <EntitySet Name="_PROVIDER" EntityType="Self._PROVIDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_USER" EntityType="Self.C_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_USER" EntityType="Self.ROLE_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALE" EntityType="Self.SALE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRODUCT_PROVIDER" Association="Self.FK_PRODUCT_PROVIDER">
+            <End Role="_PROVIDER" EntitySet="_PROVIDER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_USER" Association="Self.FK_ROLE_USER">
+            <End Role="ROLE_USER" EntitySet="ROLE_USER" />
+            <End Role="C_USER" EntitySet="C_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_PRODUCT" Association="Self.FK_SALE_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CLOTHINGSTOREModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_PROVIDER">
+          <Key>
+            <PropertyRef Name="ID_PROVIDER" />
+          </Key>
+          <Property Name="ID_PROVIDER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDENTIFICATIONCARD" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SURNAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_PROVIDER" FromRole="C_PROVIDER" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="C_USER">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDENTIFICATIONCARD" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_IDENTIFICATION" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="NAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SURNAMES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADDRESS_USER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ORIGINCITY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IDROLE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROLE_USER" Relationship="Self.FK_ROLE_USER" FromRole="C_USER" ToRole="ROLE_USER" />
+          <Property Name="SESION_NAME" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="SESION_PASSWORD" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE_PRODUCT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NAME_PRODUCT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION_PRODUCT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STOCK" Type="Int32" />
+          <Property Name="PRICE_PRODUCT" Type="Double" />
+          <Property Name="ID_PROVIDER" Type="Int32" />
+          <NavigationProperty Name="C_PROVIDER" Relationship="Self.FK_PRODUCT_PROVIDER" FromRole="PRODUCT" ToRole="C_PROVIDER" />
+          <NavigationProperty Name="SALE" Relationship="Self.FK_SALE_PRODUCT" FromRole="PRODUCT" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="ROLE_USER">
+          <Key>
+            <PropertyRef Name="ID_ROLE" />
+          </Key>
+          <Property Name="ID_ROLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME_ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION_ROLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="C_USER" Relationship="Self.FK_ROLE_USER" FromRole="ROLE_USER" ToRole="C_USER" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_SALE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_CLIENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_SALLER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AMOUNT" Type="Int32" Nullable="false" />
+          <Property Name="DATE_SALE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TOTAL_VALUE" Type="Double" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_SALE_PRODUCT" FromRole="SALE" ToRole="PRODUCT" />
+        </EntityType>
+        <Association Name="FK_PRODUCT_PROVIDER">
+          <End Role="C_PROVIDER" Type="Self.C_PROVIDER" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_PROVIDER">
+              <PropertyRef Name="ID_PROVIDER" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_PROVIDER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLE_USER">
+          <End Role="ROLE_USER" Type="Self.ROLE_USER" Multiplicity="1" />
+          <End Role="C_USER" Type="Self.C_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE_USER">
+              <PropertyRef Name="ID_ROLE" />
+            </Principal>
+            <Dependent Role="C_USER">
+              <PropertyRef Name="IDROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CLOTHINGSTOREEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_PROVIDER" EntityType="Self.C_PROVIDER" />
+          <EntitySet Name="C_USER" EntityType="Self.C_USER" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
+          <EntitySet Name="ROLE_USER" EntityType="Self.ROLE_USER" />
+          <EntitySet Name="SALE" EntityType="Self.SALE" />
+          <AssociationSet Name="FK_PRODUCT_PROVIDER" Association="Self.FK_PRODUCT_PROVIDER">
+            <End Role="C_PROVIDER" EntitySet="C_PROVIDER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_USER" Association="Self.FK_ROLE_USER">
+            <End Role="ROLE_USER" EntitySet="ROLE_USER" />
+            <End Role="C_USER" EntitySet="C_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_PRODUCT" Association="Self.FK_SALE_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CLOTHINGSTOREModelStoreContainer" CdmEntityContainer="CLOTHINGSTOREEntities">
+          <EntitySetMapping Name="C_PROVIDER">
+            <EntityTypeMapping TypeName="CLOTHINGSTOREModel.C_PROVIDER">
+              <MappingFragment StoreEntitySet="_PROVIDER">
+                <ScalarProperty Name="ID_PROVIDER" ColumnName="ID_PROVIDER" />
+                <ScalarProperty Name="IDENTIFICATIONCARD" ColumnName="IDENTIFICATIONCARD" />
+                <ScalarProperty Name="NAMES" ColumnName="NAMES" />
+                <ScalarProperty Name="SURNAMES" ColumnName="SURNAMES" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_USER">
+            <EntityTypeMapping TypeName="CLOTHINGSTOREModel.C_USER">
+              <MappingFragment StoreEntitySet="C_USER">
+                <ScalarProperty Name="SESION_PASSWORD" ColumnName="SESION_PASSWORD" />
+                <ScalarProperty Name="SESION_NAME" ColumnName="SESION_NAME" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="IDENTIFICATIONCARD" ColumnName="IDENTIFICATIONCARD" />
+                <ScalarProperty Name="TYPE_IDENTIFICATION" ColumnName="TYPE_IDENTIFICATION" />
+                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+                <ScalarProperty Name="NAMES" ColumnName="NAMES" />
+                <ScalarProperty Name="SURNAMES" ColumnName="SURNAMES" />
+                <ScalarProperty Name="ADDRESS_USER" ColumnName="ADDRESS_USER" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ORIGINCITY" ColumnName="ORIGINCITY" />
+                <ScalarProperty Name="IDROLE" ColumnName="IDROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT">
+            <EntityTypeMapping TypeName="CLOTHINGSTOREModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="CODE_PRODUCT" ColumnName="CODE_PRODUCT" />
+                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+                <ScalarProperty Name="NAME_PRODUCT" ColumnName="NAME_PRODUCT" />
+                <ScalarProperty Name="DESCRIPTION_PRODUCT" ColumnName="DESCRIPTION_PRODUCT" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="PRICE_PRODUCT" ColumnName="PRICE_PRODUCT" />
+                <ScalarProperty Name="ID_PROVIDER" ColumnName="ID_PROVIDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_USER">
+            <EntityTypeMapping TypeName="CLOTHINGSTOREModel.ROLE_USER">
+              <MappingFragment StoreEntitySet="ROLE_USER">
+                <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+                <ScalarProperty Name="NAME_ROLE" ColumnName="NAME_ROLE" />
+                <ScalarProperty Name="DESCRIPTION_ROLE" ColumnName="DESCRIPTION_ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALE">
+            <EntityTypeMapping TypeName="CLOTHINGSTOREModel.SALE">
+              <MappingFragment StoreEntitySet="SALE">
+                <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
+                <ScalarProperty Name="USER_CLIENT" ColumnName="USER_CLIENT" />
+                <ScalarProperty Name="USER_SALLER" ColumnName="USER_SALLER" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="DATE_SALE" ColumnName="DATE_SALE" />
+                <ScalarProperty Name="TOTAL_VALUE" ColumnName="TOTAL_VALUE" />
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -79,8 +79,11 @@ D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\es\System.Web.Razor.resources.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\es\System.Web.WebPages.resources.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.csprojAssemblyReference.cache
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.csproj.CoreCompileInputs.cache
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.csproj.CopyComplete
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.pdb
+D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.dll
+D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.SqlServer.dll
+D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.xml
+D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.SqlServer.xml

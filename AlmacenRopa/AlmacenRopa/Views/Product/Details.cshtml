@@ -1,0 +1,74 @@
+﻿@model AlmacenRopa.Models.PRODUCT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PRODUCT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CODE_PRODUCT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CODE_PRODUCT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHOTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHOTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME_PRODUCT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME_PRODUCT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION_PRODUCT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION_PRODUCT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STOCK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STOCK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE_PRODUCT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE_PRODUCT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_PROVIDER.IDENTIFICATIONCARD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_PROVIDER.IDENTIFICATIONCARD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_PRODUCT }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

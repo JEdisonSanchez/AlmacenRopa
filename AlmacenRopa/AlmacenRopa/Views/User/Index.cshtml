@@ -1,0 +1,90 @@
+﻿@model IEnumerable<AlmacenRopa.Models.C_USER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDENTIFICATIONCARD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TYPE_IDENTIFICATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHOTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAMES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SURNAMES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ADDRESS_USER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ORIGINCITY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROLE_USER.NAME_ROLE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDENTIFICATIONCARD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TYPE_IDENTIFICATION)
+        </td>
+        <td>
+            @*<img src="@Url.Action("getImage","Clients",new { id=item.photo})" />*@
+            <img width="100" src="@Url.Action("getImage", "User", new { id = item.IDUSER })" />
+            @Html.ValidationMessageFor(modelItem => item.PHOTO, "", new { @class = "text-danger" })
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SURNAMES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDRESS_USER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ORIGINCITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROLE_USER.NAME_ROLE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDUSER }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDUSER }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDUSER })
+        </td>
+    </tr>
+}
+
+</table>

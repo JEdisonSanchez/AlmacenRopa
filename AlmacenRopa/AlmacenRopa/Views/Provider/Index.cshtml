@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AlmacenRopa.Models.C_PROVIDER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDENTIFICATIONCARD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAMES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SURNAMES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIT)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDENTIFICATIONCARD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SURNAMES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIT)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PROVIDER }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_PROVIDER }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PROVIDER })
+        </td>
+    </tr>
+}
+
+</table>

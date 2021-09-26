@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CLOTHINGSTOREModelStoreContainer" CdmEntityContainer="CLOTHINGSTOREEntities">
+    <EntitySetMapping Name="C_PROVIDER">
+      <EntityTypeMapping TypeName="CLOTHINGSTOREModel.C_PROVIDER">
+        <MappingFragment StoreEntitySet="_PROVIDER">
+          <ScalarProperty Name="ID_PROVIDER" ColumnName="ID_PROVIDER" />
+          <ScalarProperty Name="IDENTIFICATIONCARD" ColumnName="IDENTIFICATIONCARD" />
+          <ScalarProperty Name="NAMES" ColumnName="NAMES" />
+          <ScalarProperty Name="SURNAMES" ColumnName="SURNAMES" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_USER">
+      <EntityTypeMapping TypeName="CLOTHINGSTOREModel.C_USER">
+        <MappingFragment StoreEntitySet="C_USER">
+          <ScalarProperty Name="SESION_PASSWORD" ColumnName="SESION_PASSWORD" />
+          <ScalarProperty Name="SESION_NAME" ColumnName="SESION_NAME" />
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="IDENTIFICATIONCARD" ColumnName="IDENTIFICATIONCARD" />
+          <ScalarProperty Name="TYPE_IDENTIFICATION" ColumnName="TYPE_IDENTIFICATION" />
+          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+          <ScalarProperty Name="NAMES" ColumnName="NAMES" />
+          <ScalarProperty Name="SURNAMES" ColumnName="SURNAMES" />
+          <ScalarProperty Name="ADDRESS_USER" ColumnName="ADDRESS_USER" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ORIGINCITY" ColumnName="ORIGINCITY" />
+          <ScalarProperty Name="IDROLE" ColumnName="IDROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCT">
+      <EntityTypeMapping TypeName="CLOTHINGSTOREModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+          <ScalarProperty Name="CODE_PRODUCT" ColumnName="CODE_PRODUCT" />
+          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+          <ScalarProperty Name="NAME_PRODUCT" ColumnName="NAME_PRODUCT" />
+          <ScalarProperty Name="DESCRIPTION_PRODUCT" ColumnName="DESCRIPTION_PRODUCT" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="PRICE_PRODUCT" ColumnName="PRICE_PRODUCT" />
+          <ScalarProperty Name="ID_PROVIDER" ColumnName="ID_PROVIDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLE_USER">
+      <EntityTypeMapping TypeName="CLOTHINGSTOREModel.ROLE_USER">
+        <MappingFragment StoreEntitySet="ROLE_USER">
+          <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+          <ScalarProperty Name="NAME_ROLE" ColumnName="NAME_ROLE" />
+          <ScalarProperty Name="DESCRIPTION_ROLE" ColumnName="DESCRIPTION_ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SALE">
+      <EntityTypeMapping TypeName="CLOTHINGSTOREModel.SALE">
+        <MappingFragment StoreEntitySet="SALE">
+          <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
+          <ScalarProperty Name="USER_CLIENT" ColumnName="USER_CLIENT" />
+          <ScalarProperty Name="USER_SALLER" ColumnName="USER_SALLER" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="DATE_SALE" ColumnName="DATE_SALE" />
+          <ScalarProperty Name="TOTAL_VALUE" ColumnName="TOTAL_VALUE" />
+          <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
