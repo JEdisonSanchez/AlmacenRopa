@@ -1,0 +1,51 @@
+﻿html{}
+
+body {
+    /*display: grid;*/
+    /*min-height: 100vh;
+     flex-direction: column;
+    */
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+
+.col.tamaño.slide.s2 {
+    width: 18%;
+}
+
+.slideStyle {
+    background-color: #AABDD8;
+}
+
+.col.tamaño2.slide2.s10 {
+    width: 80%;
+    margin-top: 8px;
+    margin-left: 2%;
+}
+
+ul#slide-out\ {
+    width: 243px;
+}
+
+img.imagen {
+    width: 49%;
+    margin-left: 18%;
+}
+nav {
+    color: #fff;
+    background-color: #545454;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+}
+.page-footer {
+    background-color: #545454;
+}
+
+.carousel {
+    height:264px;
+}
