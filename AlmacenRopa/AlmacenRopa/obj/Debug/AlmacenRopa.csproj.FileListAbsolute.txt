@@ -87,3 +87,4 @@ D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.SqlServer.dll
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.xml
 D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\bin\EntityFramework.SqlServer.xml
+D:\AlmacenRopa\AlmacenRopa\AlmacenRopa\obj\Debug\AlmacenRopa.csprojAssemblyReference.cache

@@ -35,6 +35,8 @@
                 <li>@Html.ActionLink("Roles de Usuario", "Index", "RoleUser")</li>
                 <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
                 <li>@Html.ActionLink("Usarios", "Index", "User")</li>
+                <li><a class=" modal-trigger" href="#modal1">Iniciar Sesion</a></li>
+
 
                 <li><a class="subheader">Subheader</a></li>
                 <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
@@ -56,9 +58,9 @@
                 </div>
             </nav>
             <div class="container body-content">
+
                 @RenderBody()
-
-
+                @Html.Partial("_IniciarSesionPartial")
 
             </div>
 
@@ -74,7 +76,7 @@
                             <ul>
                                 <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
                                 <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                          
+
                             </ul>
                         </div>
                     </div>
@@ -88,6 +90,5 @@
             </footer>
         </div>
     </div>
-
 </body>
 </html>

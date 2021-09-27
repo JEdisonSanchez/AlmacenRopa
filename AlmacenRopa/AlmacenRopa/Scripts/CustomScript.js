@@ -6,6 +6,7 @@
 
 $(document).ready(function () {
     $('select').formSelect();
+    $('.modal').modal();
 
 
     $('.carousel').carousel();
