@@ -1,24 +1,28 @@
 ﻿@model IEnumerable<AlmacenRopa.Models.PRODUCT>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de productos";
 }
 
-<h2>Index</h2>
+<h4>Lista de productos</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","Product")"><i class="material-icons left">add_circle</i>Crear</a>
+
+
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
         <th>
-            Codigo del Producto
-        </th>
-        <th>
             Foto
         </th>
         <th>
-           Nombre del Producto
+            Codigo del Producto
+        </th>
+
+        <th>
+            Nombre del Producto
         </th>
         <th>
             Cantidad en Stock
@@ -30,30 +34,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CODE_PRODUCT)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.PHOTO)*@
-            <img width="100" src="@Url.Action("getImage", "Product", new { id = item.CODE_PRODUCT })" />
-            @Html.ValidationMessageFor(modelItem => item.PHOTO, "", new { @class = "text-danger" })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME_PRODUCT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STOCK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRICE_PRODUCT)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PRODUCT }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_PRODUCT }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PRODUCT })
-        </td>
-    </tr>
+<tr>
+
+    <td>
+        @*@Html.DisplayFor(modelItem => item.PHOTO)*@
+        <img width="80" height="80" src="@Url.Action("getImage", "Product", new { id = item.CODE_PRODUCT })" />
+        @Html.ValidationMessageFor(modelItem => item.PHOTO, "", new { @class = "text-danger" })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CODE_PRODUCT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NAME_PRODUCT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.STOCK)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRICE_PRODUCT)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID_PRODUCT }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID_PRODUCT }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID_PRODUCT })
+    </td>
+</tr>
 }
 
 </table>

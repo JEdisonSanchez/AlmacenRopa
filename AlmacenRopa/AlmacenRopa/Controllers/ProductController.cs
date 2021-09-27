@@ -43,7 +43,7 @@ namespace AlmacenRopa.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            ViewBag.ID_PROVIDER = new SelectList(db.C_PROVIDER, "ID_PROVIDER", "IDENTIFICATIONCARD");
+            ViewBag.ID_PROVIDER = new SelectList(db.C_PROVIDER, "ID_PROVIDER", "NAMES");
             return View();
         }
 
