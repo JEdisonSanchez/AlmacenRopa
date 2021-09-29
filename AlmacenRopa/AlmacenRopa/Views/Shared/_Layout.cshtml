@@ -54,14 +54,14 @@
                         <li>@Html.ActionLink("Proveedores", "Index", "Provider")</li>
                         <li>@Html.ActionLink("Roles de Usuario", "Index", "RoleUser")</li>
                         <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
-                        <li>@Html.ActionLink("Usarios", "Index", "User")</li>
+                        <li>@Html.ActionLink("Usuarios", "Index", "User")</li>
                     }
                     else if (nombreRol.Equals("Vendedor"))
                     {
                         <li>@Html.ActionLink("Productos", "Index", "Product")</li>
                         <li>@Html.ActionLink("Proveedores", "Index", "Provider")</li>
                         <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
-                        <li>@Html.ActionLink("Usarios", "Index", "User")</li>
+                        <li>@Html.ActionLink("Usuarios", "Index", "User")</li>
                     }
                     else if (nombreRol.Equals("Cliente"))
                     {
@@ -76,11 +76,9 @@
                 {
                     <li><a class=" modal-trigger" href="#modal1">Iniciar Sesion</a></li>
                     <li>@Html.ActionLink("Ver Productos", "Index", "Product")</li>
+                    <li>@Html.ActionLink("Crear cuenta", "Create", "User")</li>
+
                 }
-
-
-
-
 
             </ul>
 

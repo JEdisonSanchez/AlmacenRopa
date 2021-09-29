@@ -54,6 +54,9 @@ namespace AlmacenRopa.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDUSER,IDENTIFICATIONCARD,TYPE_IDENTIFICATION,PHOTO,NAMES,SURNAMES,ADDRESS_USER,PHONE,EMAIL,ORIGINCITY,SESION_NAME,SESION_PASSWORD,IDROLE")] C_USER c_USER)
         {
+            var usuarioSesion = HttpContext.User.Identity.Name;
+
+
             HttpPostedFileBase fileBase = Request.Files[0];
 
 
@@ -70,6 +73,14 @@ namespace AlmacenRopa.Controllers
                     c_USER.PHOTO = image.GetBytes();
 
                 }
+            }
+
+            if (usuarioSesion == "")
+            {
+                c_USER.IDROLE = 2;
+                db.C_USER.Add(c_USER);
+                db.SaveChanges();
+                return RedirectToAction("Index","Home");
             }
 
             if (ModelState.IsValid)

@@ -51,3 +51,6 @@ nav {
     height:264px;
     margin-bottom:11%;
 }
+.hidden {
+    display: none;
+}
