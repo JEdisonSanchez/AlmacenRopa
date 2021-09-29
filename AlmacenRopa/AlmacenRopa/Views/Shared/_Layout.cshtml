@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var usuarioLogado = Context.User.Identity.IsAuthenticated;
+    var usuarioSesion = Context.Session["usuario"];
+    var rolSesion = Context.Session["rol"];
+    var userId = Context.Session["id"];
+
+    var nombreUsuario = string.Empty;
+    var nombreRol = string.Empty;
+
+    if (usuarioSesion != null)
+    {
+        nombreUsuario = usuarioSesion.ToString();
+        nombreRol = rolSesion.ToString();
+    }
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,12 +42,46 @@
                         </div>
                     </div>
                 </li>
-                <li>@Html.ActionLink("Productos", "Index", "Product")</li>
-                <li>@Html.ActionLink("Proveedores", "Index", "Provider")</li>
-                <li>@Html.ActionLink("Roles de Usuario", "Index", "RoleUser")</li>
-                <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
-                <li>@Html.ActionLink("Usarios", "Index", "User")</li>
-                <li><a class=" modal-trigger" href="#modal1">Iniciar Sesion</a></li>
+
+                @if (usuarioLogado)
+                {
+                    <li><a>@Html.ActionLink("Cerrar Sesion", "LogOut", "Home")</a></li>
+
+
+                    if (nombreRol.Equals("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Productos", "Index", "Product")</li>
+                        <li>@Html.ActionLink("Proveedores", "Index", "Provider")</li>
+                        <li>@Html.ActionLink("Roles de Usuario", "Index", "RoleUser")</li>
+                        <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
+                        <li>@Html.ActionLink("Usarios", "Index", "User")</li>
+                    }
+                    else if (nombreRol.Equals("Vendedor"))
+                    {
+                        <li>@Html.ActionLink("Productos", "Index", "Product")</li>
+                        <li>@Html.ActionLink("Proveedores", "Index", "Provider")</li>
+                        <li>@Html.ActionLink("Ventas", "Index", "Sale")</li>
+                        <li>@Html.ActionLink("Usarios", "Index", "User")</li>
+                    }
+                    else if (nombreRol.Equals("Cliente"))
+                    {
+                        <li>@Html.ActionLink("Productos", "Index", "Product")</li>
+                        <li>@Html.ActionLink("Compras", "Index", "Sale")</li>
+
+                    }
+
+
+                }
+                else
+                {
+                    <li><a class=" modal-trigger" href="#modal1">Iniciar Sesion</a></li>
+                    <li>@Html.ActionLink("Ver Productos", "Index", "Product")</li>
+                }
+
+
+
+
+
             </ul>
 
         </div>
@@ -41,6 +91,12 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">
                         <i class="material-icons">shopping_cart</i>
+                            @if (usuarioLogado)
+                            {
+                                <i>
+                                    Bienvenido @nombreUsuario a nuestro sistema de ventas
+                                </i>
+                            }
                     </a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
