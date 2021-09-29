@@ -68,6 +68,7 @@
     <Property Name="TOTAL_VALUE" Type="Double" Nullable="false" />
     <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PRODUCT" Relationship="Self.FK_SALE_PRODUCT" FromRole="SALE" ToRole="PRODUCT" />
+    <Property Name="STATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_PRODUCT_PROVIDER">
     <End Role="C_PROVIDER" Type="Self.C_PROVIDER" Multiplicity="0..1" />

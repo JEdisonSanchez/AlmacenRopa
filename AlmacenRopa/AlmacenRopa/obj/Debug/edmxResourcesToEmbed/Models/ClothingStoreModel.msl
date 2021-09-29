@@ -59,6 +59,7 @@
     <EntitySetMapping Name="SALE">
       <EntityTypeMapping TypeName="CLOTHINGSTOREModel.SALE">
         <MappingFragment StoreEntitySet="SALE">
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
           <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
           <ScalarProperty Name="USER_CLIENT" ColumnName="USER_CLIENT" />
           <ScalarProperty Name="USER_SALLER" ColumnName="USER_SALLER" />

@@ -53,9 +53,11 @@
             @Html.DisplayFor(modelItem => item.PRODUCT.CODE_PRODUCT)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SALE }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_SALE }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SALE })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID_SALE }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID_SALE }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID_SALE })|
+            @Html.ActionLink("Cancelar", "Cancel", new { id = item.ID_SALE })
+
         </td>
     </tr>
 }

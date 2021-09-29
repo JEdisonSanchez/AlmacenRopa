@@ -21,6 +21,7 @@ namespace AlmacenRopa.Models
         public System.DateTime DATE_SALE { get; set; }
         public double TOTAL_VALUE { get; set; }
         public int ID_PRODUCT { get; set; }
+        public string STATE { get; set; }
     
         public virtual PRODUCT PRODUCT { get; set; }
     }

@@ -62,6 +62,7 @@
     <Property Name="DATE_SALE" Type="date" Nullable="false" />
     <Property Name="TOTAL_VALUE" Type="float" Nullable="false" />
     <Property Name="ID_PRODUCT" Type="int" Nullable="false" />
+    <Property Name="STATE" Type="varchar" MaxLength="100" />
   </EntityType>
   <Association Name="FK_PRODUCT_PROVIDER">
     <End Role="_PROVIDER" Type="Self._PROVIDER" Multiplicity="0..1" />

@@ -67,6 +67,7 @@
           <Property Name="DATE_SALE" Type="date" Nullable="false" />
           <Property Name="TOTAL_VALUE" Type="float" Nullable="false" />
           <Property Name="ID_PRODUCT" Type="int" Nullable="false" />
+          <Property Name="STATE" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_PRODUCT_PROVIDER">
           <End Role="_PROVIDER" Type="Self._PROVIDER" Multiplicity="0..1" />
@@ -195,6 +196,7 @@
           <Property Name="TOTAL_VALUE" Type="Double" Nullable="false" />
           <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PRODUCT" Relationship="Self.FK_SALE_PRODUCT" FromRole="SALE" ToRole="PRODUCT" />
+          <Property Name="STATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_PRODUCT_PROVIDER">
           <End Role="C_PROVIDER" Type="Self.C_PROVIDER" Multiplicity="0..1" />
@@ -315,6 +317,7 @@
           <EntitySetMapping Name="SALE">
             <EntityTypeMapping TypeName="CLOTHINGSTOREModel.SALE">
               <MappingFragment StoreEntitySet="SALE">
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
                 <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
                 <ScalarProperty Name="USER_CLIENT" ColumnName="USER_CLIENT" />
                 <ScalarProperty Name="USER_SALLER" ColumnName="USER_SALLER" />

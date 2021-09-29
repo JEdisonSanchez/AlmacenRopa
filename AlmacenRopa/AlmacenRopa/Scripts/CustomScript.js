@@ -7,6 +7,7 @@
 $(document).ready(function () {
     $('select').formSelect();
     $('.modal').modal();
+    $('.datepicker').datepicker();
 
 
     $('.carousel').carousel();
