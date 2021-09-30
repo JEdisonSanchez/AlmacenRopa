@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista de Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","RoleUser")"><i class="material-icons left">add_circle</i>Crear</a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -20,20 +21,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME_ROLE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPTION_ROLE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ROLE }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_ROLE }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ROLE })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME_ROLE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPTION_ROLE)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_ROLE }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_ROLE }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_ROLE })
+            </td>
+        </tr>
+    }
 
 </table>
